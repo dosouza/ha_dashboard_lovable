@@ -34,6 +34,8 @@ interface Props {
     abajurEsq?: string;
     abajurDir?: string;
     pendentes?: string;
+    tv?: string;
+    luzPrincipal?: string;
   };
 }
 
@@ -48,6 +50,8 @@ const SuiteScene = ({ states, mapping }: Props) => {
   const P = isOn(mapping.pendentes, states) ? "1" : "0";
   const E = isOn(mapping.abajurEsq, states) ? "1" : "0";
   const D = isOn(mapping.abajurDir, states) ? "1" : "0";
+  const tvOn = isOn(mapping.tv, states);
+  const luzOn = isOn(mapping.luzPrincipal, states);
 
   // Se nenhuma entidade estiver mapeada ainda, mostra o render com tudo aceso
   const anyMapped = mapping.led || mapping.pendentes || mapping.abajurEsq || mapping.abajurDir;
@@ -65,6 +69,49 @@ const SuiteScene = ({ states, mapping }: Props) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
+      />
+
+      {/* Overlay: Luz Principal — brilho âmbar difuso vindo do teto */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        animate={{ opacity: luzOn ? 0.18 : 0 }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
+        style={{
+          background: "radial-gradient(ellipse 80% 60% at 55% 20%, rgba(255,220,120,0.9) 0%, transparent 70%)",
+          mixBlendMode: "screen",
+        }}
+      />
+
+      {/* Overlay: TV — glow azulado na tela do monitor isométrico */}
+      <motion.div
+        className="absolute pointer-events-none"
+        animate={{ opacity: tvOn ? 1 : 0 }}
+        transition={{ duration: 0.4, ease: "easeInOut" }}
+        style={{
+          left: "32%",
+          top: "43%",
+          width: "13%",
+          height: "19%",
+          background: "radial-gradient(ellipse 100% 80% at 50% 50%, rgba(100,180,255,0.85) 0%, rgba(60,120,220,0.4) 50%, transparent 80%)",
+          mixBlendMode: "screen",
+          filter: "blur(4px)",
+          transform: "skewX(-8deg) skewY(4deg)",
+        }}
+      />
+      {/* Reflexo do glow da TV no chão */}
+      <motion.div
+        className="absolute pointer-events-none"
+        animate={{ opacity: tvOn ? 1 : 0 }}
+        transition={{ duration: 0.4, ease: "easeInOut" }}
+        style={{
+          left: "28%",
+          top: "62%",
+          width: "18%",
+          height: "10%",
+          background: "radial-gradient(ellipse 100% 100% at 50% 0%, rgba(60,120,255,0.25) 0%, transparent 100%)",
+          mixBlendMode: "screen",
+          filter: "blur(6px)",
+        }}
       />
 
       {/* Vinheta sutil para integrar com o tema */}

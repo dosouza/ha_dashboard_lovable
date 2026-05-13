@@ -21,6 +21,8 @@ type SuiteMapping = {
   abajurEsq?: string;
   abajurDir?: string;
   pendentes?: string;
+  tv?: string;
+  luzPrincipal?: string;
 };
 
 const STORAGE_KEY = "casa.suite.mapping";
@@ -188,6 +190,8 @@ const Casa = () => {
                   ["led", "LED Strip (sanca)"],
                   ["abajurEsq", "Abajur esquerdo"],
                   ["abajurDir", "Abajur direito"],
+                  ["luzPrincipal", "Luz principal"],
+                  ["tv", "TV / Monitor"],
                 ] as const
               ).map(([key, label]) => (
                 <div key={key} className="space-y-1.5">
@@ -214,10 +218,12 @@ const Casa = () => {
       {/* Painel de controle das luzes mapeadas */}
       {(() => {
         const controls: { key: keyof SuiteMapping; label: string; icon: React.ReactNode }[] = [
-          { key: "pendentes", label: "Pendentes", icon: <Lightbulb className="w-5 h-5" /> },
-          { key: "led",       label: "LED Strip",  icon: <Sun className="w-5 h-5" /> },
-          { key: "abajurEsq", label: "Abajur Esq", icon: <Lamp className="w-5 h-5" /> },
-          { key: "abajurDir", label: "Abajur Dir",  icon: <Lamp className="w-5 h-5 scale-x-[-1]" /> },
+          { key: "pendentes",   label: "Pendentes",    icon: <Lightbulb className="w-5 h-5" /> },
+          { key: "led",         label: "LED Strip",    icon: <Sun className="w-5 h-5" /> },
+          { key: "abajurEsq",  label: "Abajur Esq",   icon: <Lamp className="w-5 h-5" /> },
+          { key: "abajurDir",  label: "Abajur Dir",   icon: <Lamp className="w-5 h-5 scale-x-[-1]" /> },
+          { key: "luzPrincipal", label: "Luz Principal", icon: <Lightbulb className="w-5 h-5" /> },
+          { key: "tv",          label: "TV",           icon: <Sun className="w-5 h-5" /> },
         ].filter((c) => !!mapping[c.key]);
 
         if (controls.length === 0) return (

@@ -43,8 +43,7 @@ Thumbs.db
 # Test coverage
 coverage/
 
-# Playwright
-playwright-report/
-test-results/
+# Temp assets
+temporary/
 
 temporary/
