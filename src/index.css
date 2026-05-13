@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 230 25% 9%;
+    --foreground: 220 20% 92%;
+
+    --card: 230 20% 14%;
+    --card-foreground: 220 20% 92%;
+    --card-glass: 230 20% 16%;
+    --card-border: 230 15% 22%;
+
+    --popover: 230 22% 12%;
+    --popover-foreground: 220 20% 92%;
+
+    --primary: 42 100% 50%;
+    --primary-foreground: 230 25% 9%;
+
+    --secondary: 230 15% 20%;
+    --secondary-foreground: 220 20% 80%;
+
+    --muted: 230 15% 18%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 42 90% 55%;
+    --accent-foreground: 230 25% 9%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 142 72% 45%;
+    --success-foreground: 230 25% 9%;
+
+    --warning: 42 100% 50%;
+    --warning-foreground: 230 25% 9%;
+
+    --border: 230 15% 22%;
+    --input: 230 15% 20%;
+    --ring: 42 100% 50%;
+
+    --radius: 1rem;
+
+    --glow-primary: 0 0 20px hsl(42 100% 50% / 0.3);
+    --glow-active: 0 0 30px hsl(42 100% 50% / 0.4), 0 0 60px hsl(42 100% 50% / 0.15);
+    --glass-bg: hsl(230 20% 16% / 0.6);
+    --glass-border: hsl(230 15% 28% / 0.5);
+    --glass-shadow: 0 8px 32px hsl(230 25% 5% / 0.4);
+
+    --sidebar-background: 230 25% 9%;
+    --sidebar-foreground: 220 20% 92%;
+    --sidebar-primary: 42 100% 50%;
+    --sidebar-primary-foreground: 230 25% 9%;
+    --sidebar-accent: 230 15% 20%;
+    --sidebar-accent-foreground: 220 20% 92%;
+    --sidebar-border: 230 15% 22%;
+    --sidebar-ring: 42 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    background: linear-gradient(135deg, hsl(230 25% 9%) 0%, hsl(255 20% 12%) 50%, hsl(280 15% 10%) 100%);
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glow-active {
+    box-shadow: var(--glow-active);
+    border-color: hsl(42 100% 50% / 0.5);
+  }
+
+  .glow-subtle {
+    box-shadow: var(--glow-primary);
+  }
+
+  .text-tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
